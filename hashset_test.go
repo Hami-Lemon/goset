@@ -20,13 +20,6 @@ func TestHashSet_IsEmpty(t *testing.T) {
 	Equal(set.IsEmpty(), false, t)
 }
 
-func TestHashSet_IsNotEmpty(t *testing.T) {
-	set := newHashSet[int]()
-	Equal(set.IsNotEmpty(), false, t)
-	set.Add(1)
-	Equal(set.IsNotEmpty(), true, t)
-}
-
 func TestHashSet_Contains(t *testing.T) {
 	set := newHashSet[int]()
 	Equal(set.Contains(1), false, t)
@@ -42,6 +35,9 @@ func TestHashSet_Add(t *testing.T) {
 	Equal(set.Add(4), true, t)
 	//重复添加
 	Equal(set.Add(1), false, t)
+	Equal(set.Add(2), false, t)
+	Equal(set.Add(3), false, t)
+	Equal(set.Add(4), false, t)
 	m := map[int]struct{}(set)
 	MapContains(m, 1, t)
 	MapContains(m, 2, t)
